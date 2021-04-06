@@ -11,8 +11,8 @@ export const getUsers = (result) => {
     })
 }
 
-export const getUsersLogin = (username, result) =>{
-    db.query("SELECT * FROM register WHERE `username` = ? AND `password` = ?", [username], (err, results) =>{
+export const getUsersLogin = (data, result) =>{
+    db.query("SELECT * FROM register WHERE `username` = ? AND `password` = ?", [data.username, data.password], (err, results) =>{
         if(err){
             console.log(err)
             result(err, null)

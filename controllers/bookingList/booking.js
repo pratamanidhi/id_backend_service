@@ -1,4 +1,4 @@
-import {getBookings, insertBookings, getBookingsById, updateBookings, deleteBookings} from "../../models/booking/bookingModel.js"
+import {getBookings, insertBookings, getBookingsById, updateBookings, deleteBookings, getBookingsDetail} from "../../models/booking/bookingModel.js"
 
 export const showBooking = (req, res) =>{
     getBookings((err, results) =>{
@@ -53,4 +53,15 @@ export const deleteBooking = (req, res) => {
             res.json(results);
         }
     })
+}
+
+export const getBookingDetail = (req, res) => {
+    getBookingsDetail((err, results) => {
+        if(err){
+            res.send(err);
+        }else{
+            res.json(results)
+        }
+    });
+
 }
