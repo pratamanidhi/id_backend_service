@@ -2,6 +2,7 @@ import express from 'express';
 
 import {showProducts, deleteProduct, showProductById, updateProduct,insertProduct} from '../controllers/productList/product.js';
 import {showUser, showUserById, insertUser, updateUser, deleteUser, userLogin} from '../controllers/userList/user.js'
+import {showBooking, insertBooking, getBookingById, updateBooking, deleteBooking} from "../controllers/bookingList/booking.js"
 
 
 const router = express.Router();
@@ -18,5 +19,11 @@ router.post('/user/login', userLogin)
 router.post('/user', insertUser)
 router.put('/user/:id', updateUser)
 router.delete('/user/:id', deleteUser)
+
+router.get('/booking', showBooking)
+router.get('/booking/:id',getBookingById)
+router.post('/booking',insertBooking)
+router.put('/booking/:id', updateBooking)
+router.delete('/booking/:id', deleteBooking)
 
 export default router;
