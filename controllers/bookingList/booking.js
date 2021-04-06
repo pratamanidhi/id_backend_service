@@ -1,4 +1,5 @@
-import {getBookings, insertBookings, getBookingsById, updateBookings, deleteBookings, getBookingsDetail} from "../../models/booking/bookingModel.js"
+import {getBookings, insertBookings, getBookingsById, updateBookings, deleteBookings, getBookingsDetail,
+    getBookingsByUserID, getBookingsByPartnerID} from "../../models/booking/bookingModel.js"
 
 export const showBooking = (req, res) =>{
     getBookings((err, results) =>{
@@ -64,4 +65,26 @@ export const getBookingDetail = (req, res) => {
         }
     });
 
+}
+
+export const getBookingByUser = (req, res) => {
+    const id = req.params.id
+    getBookingsByUserID(id, (err, results) =>{
+        if(err){
+            res.send(err)
+        }else{
+            res.json(results)
+        }
+    })
+}
+
+export const getBookingByPartner = (req, res) => {
+    const id = req.params.id
+    getBookingsByPartnerID(id, (err, results) =>{
+        if(err){
+            res.send(err)
+        }else{
+            res.json(results)
+        }
+    })
 }

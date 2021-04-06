@@ -2,7 +2,8 @@ import express from 'express';
 
 import {showProducts, deleteProduct, showProductById, updateProduct,insertProduct} from '../controllers/productList/product.js';
 import {showUser, showUserById, insertUser, updateUser, deleteUser, userLogin} from '../controllers/userList/user.js'
-import {showBooking, insertBooking, getBookingById, updateBooking, deleteBooking, getBookingDetail} from "../controllers/bookingList/booking.js"
+import {showBooking, insertBooking, getBookingById, updateBooking, deleteBooking, getBookingDetail,
+    getBookingByUser, getBookingByPartner} from "../controllers/bookingList/booking.js"
 
 
 const router = express.Router();
@@ -26,5 +27,7 @@ router.post('/booking',insertBooking)
 router.put('/booking/:id', updateBooking)
 router.delete('/booking/:id', deleteBooking)
 router.get("/all_booking", getBookingDetail)
+router.get("/bookingID/:id", getBookingByUser)
+router.get("/booking_partner/:id", getBookingByPartner)
 
 export default router;
