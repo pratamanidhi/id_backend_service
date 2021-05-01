@@ -70,10 +70,18 @@ export const getBookingDetail = (req, res) => {
 export const getBookingByUser = (req, res) => {
     const id = req.params.id
     getBookingsByUserID(id, (err, results) =>{
-        if(err){
-            res.send(err)
+        if(results.length){
+            res.send({
+                status : "success",
+                error : err,
+                content : results
+            })
         }else{
-            res.json(results)
+            res.send({
+                status : "invalid",
+                error : err,
+                content : "tidak ada pesanan"
+            })
         }
     })
 }

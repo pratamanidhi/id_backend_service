@@ -1,7 +1,7 @@
 import db from "../../config/database.js"
 
 export const getBookings = (result) =>{
-    db.query("SELECT * FROM booking", (err, results) =>{
+    db.query("SELECT * FROM booking LEFT JOIN booking_status ON booking.booking_status = booking_status.id", (err, results) =>{
         if(err){
             console.log(err)
             result(err, null)
@@ -68,7 +68,7 @@ export const getBookingsDetail = (result) =>{
 }
 
 export const getBookingsByUserID = (id, result) => {
-    db.query("SELECT * FROM `booking` LEFT JOIN list_tambal_ban ON booking.id_tambal_ban = list_tambal_ban.id_tambal_ban LEFT JOIN register ON booking.id_user = register.id_user where register.id_user = ?", [id], (err, results) => {
+    db.query("SELECT * FROM `booking` LEFT JOIN list_tambal_ban ON booking.id_tambal_ban = list_tambal_ban.id_tambal_ban LEFT JOIN register ON booking.id_user = register.id_user LEFT JOIN booking_status ON booking.booking_status = booking_status.id where register.id_user = ?", [id], (err, results) => {
         if(err){
             conlose.log(err)
             result(err, null)
