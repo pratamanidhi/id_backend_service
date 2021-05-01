@@ -1,7 +1,7 @@
 import db from "../../config/database.js"
 
 export const getUsers = (result) => {
-    db.query("SELECT * FROM register", (err, results) =>{
+    db.query("SELECT * FROM register LEFT JOIN account_type ON register.account_type = account_type.id", (err, results) =>{
         if(err){
             console.log(err)
             result(err, null)
@@ -12,12 +12,12 @@ export const getUsers = (result) => {
 }
 
 export const getUsersLogin = (data, result) =>{
-    db.query("SELECT * FROM register WHERE `username` = ? AND `password` = ?", [data.username, data.password], (err, results) =>{
+    db.query("SELECT * FROM register WHERE `username` = ? AND `password` = ? AND `account_type` = ?", [data.username, data.password, data.account_type], (err, results) =>{
         if(err){
             console.log(err)
             result(err, null)
         }else{
-            result(null, results[0])
+            result(null, results)
         }
     })
 }

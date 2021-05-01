@@ -23,11 +23,19 @@ export const showUserById = (req, res) =>{
 
 export const userLogin = (req, res) => {
     const data = req.body
-    getUsersLogin(data, (err, results) =>{
-        if(err){
-            res.send(err)
+    getUsersLogin(data, (err, results) => {
+        if(results.length){
+            res.send({
+                status : "success",
+                error : err,
+                content : results
+            })
         }else{
-            res.json(results)
+            res.send({
+                status : "failed",
+                error : err,
+                content : "username dan password salah"
+            })
         }
     })
 }
